@@ -3,6 +3,9 @@ import { courseCollection } from "./collections/courseCollection";
 import { mongoConnection } from "./services/mongoConnection";
 import  * as express from 'express'
 import { courseRouter } from "./routers/courseRouter";
+import { Course } from "./models/Course";
+import * as bodyParser from 'body-parser'
+
 const PORT = 3000;
 
 (async () => {
@@ -11,9 +14,7 @@ const PORT = 3000;
     await courseCollection.init();
 
     const app = express()
-    app.get('/', (req, res) => {
-        res.send('Hello world!')
-    })
+    app.use(bodyParser.json())
     app.use('/course', courseRouter)
 
     app.listen(PORT, () => {
