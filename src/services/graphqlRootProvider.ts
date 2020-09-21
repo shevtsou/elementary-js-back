@@ -1,5 +1,6 @@
+import { gqlCourseQuery } from "../gql/queries/GQLCourseQuery";
 import { testQuery } from "../gql/TestQuery";
 
 export const graphqlRootProvider = {
-    ...testQuery.getProvider()
+    ...gqlCourseQuery.getProvider()
 }
