@@ -1,7 +1,7 @@
 import { SQuery } from "./SQuery"
 
 class TestQuery implements SQuery {
-    getQuery() {
+    getGQL() {
         return `
 type Query {
     hello: String

@@ -1,6 +1,8 @@
+import { gqlCourseMutation } from "../gql/mutations/CourseMutation";
 import { gqlCourseQuery } from "../gql/queries/GQLCourseQuery";
 import { testQuery } from "../gql/TestQuery";
 
 export const graphqlRootProvider = {
-    ...gqlCourseQuery.getProvider()
+    ...gqlCourseQuery.getProvider(),
+    ...gqlCourseMutation.getProvider(),
 }

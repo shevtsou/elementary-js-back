@@ -1,4 +1,4 @@
-export interface SQuery {
+export interface GQlMutation {
     getGQL(): string;
     getProvider(): any;
     

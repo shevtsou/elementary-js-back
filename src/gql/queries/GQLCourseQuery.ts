@@ -1,7 +1,7 @@
 import { SQuery } from "../SQuery"
 
 class GQLCourseQuery implements SQuery {
-    getQuery() {
+    getGQL() {
         return `
 
 
