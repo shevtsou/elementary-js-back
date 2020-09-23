@@ -23,7 +23,7 @@ class CourseCollection {
         }
     }
 
-    async get(id: string | undefined): Promise<Course[]> {
+    async get(id?: string): Promise<Course[]> {
         let result = undefined;
         //@ts-ignore
         result = this.collection.find(id ? {_id: new ObjectId(id)} : {})

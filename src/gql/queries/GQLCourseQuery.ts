@@ -1,3 +1,4 @@
+import { courseCollection } from "../../collections/courseCollection";
 import { SQuery } from "../SQuery"
 
 class GQLCourseQuery implements SQuery {
@@ -14,7 +15,9 @@ type Query {
 
     getProvider() {
         return {
-            courses: () => [{name: "This is first course"}]
+            courses: async () => {
+                return await courseCollection.get()
+            }
         }
     }
 }
