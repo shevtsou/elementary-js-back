@@ -6,7 +6,7 @@ import { courseRouter } from "./routers/courseRouter";
 import { Course } from "./models/Course";
 import * as bodyParser from 'body-parser'
 import { graphqlHTTP } from 'express-graphql'
-
+import * as cors from 'cors'
 import { Schema } from "mongoose";
 import { graphqlRootSchema } from "./services/graphqlRootSchema";
 import { graphqlRootProvider } from "./services/graphqlRootProvider";
@@ -22,6 +22,7 @@ const PORT = 3000;
     await courseCollection.init();
 
     const app = express()
+    app.use(cors())
     app.use(bodyParser.json())
     app.use('/course', courseRouter)
 
