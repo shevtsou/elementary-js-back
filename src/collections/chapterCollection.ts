@@ -16,8 +16,8 @@ class ChapterCollection {
     async sync(chapter: Chapter) {
         console.log(`Syncing chapter with id: ${chapter._id}`)
 
-        if (!(await courseCollection.get(chapter.course_id))) {
-            throw new Error(`No course with ${chapter.course_id}`)
+        if (!(await courseCollection.get(chapter.courseId))) {
+            throw new Error(`No course with ${chapter.courseId}`)
         }
 
         //@ts-ignore
