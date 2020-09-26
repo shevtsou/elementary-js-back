@@ -2,13 +2,13 @@ import { courseCollection } from "../../collections/courseCollection";
 import { SQuery } from "../SQuery"
 
 class GQLCourseQuery implements SQuery {
+
+    getGQLTypes() { return ``}
+    
     getGQL() {
         return `
 
-
-type Query {
     courses: [Course] 
-}
 
         `
     }

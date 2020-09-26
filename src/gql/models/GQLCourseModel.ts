@@ -3,11 +3,15 @@ import { SModel } from "./SModel";
 class GQLCourseModel implements SModel {
     getGQL() {
         return `
+            enum CourseType {
+                COURSE
+                PROJECT
+            }
+
             type Course {
-                _id: String
+                _id: ID
                 name: String
                 description: String
-                progress: Float
                 type: String
             }
         `

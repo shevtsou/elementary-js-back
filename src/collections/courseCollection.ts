@@ -33,10 +33,6 @@ class CourseCollection {
     async delete(courseId: string) {
         await this.collection.deleteOne({_id: courseId})
     }
-
-
-
-
 }
 
 export const courseCollection = new CourseCollection();

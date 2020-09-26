@@ -3,24 +3,20 @@ import { Course } from "../../models/Course";
 import { GQlMutation } from "./GQLMutation";
 
 class CourseMutation implements GQlMutation {
-    getGQL() {
+    getGQLTypes() {
         return`
+        input CourseInput {
+            name: String!
+            description: String!
+            type: CourseType!
+        }
+        `
+    }
 
-            enum CourseType {
-                COURSE
-                PROJECT
-            }
+    getGQL() {
+        return `
 
-            input CourseInput {
-                name: String!
-                description: String!
-                progress: Float!
-                type: CourseType!
-            }
-
-            type Mutation {
-                createCourse(input: CourseInput): String
-            }
+            createCourse(input: CourseInput!): String
         `
     }
 
@@ -30,7 +26,6 @@ class CourseMutation implements GQlMutation {
                 const course = new Course();
                 course.name = input.name;
                 course.description = input.description;
-                course.progress = 0;
                 course.type = input.type
 
                 courseCollection.sync(course)
