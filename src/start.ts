@@ -17,10 +17,17 @@ const PORT = 3000;
 (async () => {
 
 
-
     await mongoConnection.init();
     await courseCollection.init();
 
+    // const course = new Course();
+    // course.name = "Базовый Курс JS";
+    // course.description = "Изучите основы JS";
+    // course.progress = 30;
+    // course.type = 'course';
+
+    // courseCollection.sync(course)
+//sudo rsync -aAXv --delete ~ /media/mshautsou/5bcce128-d403-4f77-a9e9-6a6594da25c8/mshautsou
     const app = express()
     app.use(cors())
     app.use(bodyParser.json())

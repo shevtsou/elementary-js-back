@@ -1,4 +1,5 @@
 import { Model } from "../models/Model";
+import { CourseType } from "./CourseType";
 
 export class Lesson implements Model  {
     name: string;
@@ -16,8 +17,8 @@ export class Course implements Model {
     name: string;
     description: string;
     progress: number;
-    type: 'course' | 'progress';
-    chapters: Chapter[] = []
+    type: CourseType;
+    // chapters: Chapter[] = []
 
     constructor() {}
 
