@@ -5,11 +5,13 @@ class GQLChapterModel implements SModel {
         return `
             type Chapter {
                 _id: ID!
-                stepLabel: String!
+                courseId: ID!
                 title: String!
+                stepLabel: String!
                 description: String!
             }
         `
     }
 }
+
 export const gqlChapterModel = new GQLChapterModel();

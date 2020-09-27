@@ -32,6 +32,13 @@ class LessonCollection {
         }
     }
 
+
+    async getByChapterId(id: string): Promise<Lesson[]> {
+        let result = undefined;
+        result = this.collection.find({chapterId: id})
+        return await result.toArray();
+    }
+
     async get(id?: string): Promise<Chapter[]> {
         let result = undefined;
         //@ts-ignore

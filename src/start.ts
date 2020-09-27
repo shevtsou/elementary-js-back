@@ -76,6 +76,10 @@ async function test(){
 
 }
 
+async function testQuery() {
+    console.log(await chapterCollection.getByCourseId('5f6f93de65b742b4712391a0'))
+}
+
 (async () => {
 
 
@@ -87,8 +91,8 @@ async function test(){
     await sectionCollection.init();
     await contentBlockCollection.init();
 
-    await test()
-    const chapter = new Chapter();
+    // await testQuery();
+    // const chapter = new Chapter();
 
     // const course = new Course();
     // course.name = "Базовый Курс JS";

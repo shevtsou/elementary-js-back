@@ -30,6 +30,13 @@ class ChapterCollection {
         }
     }
 
+    async getByCourseId(id: string): Promise<Chapter[]> {
+        let result = undefined;
+        //@ts-ignore
+        result = this.collection.find({courseId: id})
+        return await result.toArray();
+    }
+
     async get(id?: string): Promise<Chapter[]> {
         let result = undefined;
         //@ts-ignore

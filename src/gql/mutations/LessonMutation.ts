@@ -1,38 +1,36 @@
 import { chapterCollection } from "../../collections/chapterCollection";
 import { courseCollection } from "../../collections/courseCollection";
+import { lessonCollection } from "../../collections/lessonCollection";
 import { Chapter } from "../../models/Chapter";
 import { Course } from "../../models/Course";
 import { GQlMutation } from "./GQLMutation";
 
-class ChapterMutation implements GQlMutation {
+class LessonMutation implements GQlMutation {
 
 
     getGQLTypes() {
         return `
-            input ChapterInput {
-                courseId: ID!
+            input LessonInput {
+                chapterId: ID!
                 title: String!
-                stepLabel: String!
-                description: String!
             }
         `
     }
 
     getGQL() {
         return`
-
-            createChapter(input: ChapterInput!): String
+            createLesson(input: LessonInput!): String
         `
     }
 
     getProvider() {
         return {
-            createChapter: async ( {input}) => {
-                await chapterCollection.sync(input)
-                return 'Chapter created'
+            createLesson: async ( {input}) => {
+                await lessonCollection.sync(input)
+                return 'Lesson created'
             }
         }
     }
 }
 
-export const gqlChapterMutation = new ChapterMutation();
+export const gqlLessonMutation = new LessonMutation();
