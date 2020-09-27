@@ -15,9 +15,13 @@ import { Chapter } from "./models/Chapter";
 import { CourseType } from "./models/CourseType";
 import { Lesson } from "./models/Lesson";
 import { LessonTask } from "./models/LessonTask";
-import { SectionContentBlock, SectionContentType, TaskSection } from "./models/TaskSection";
 import { TaskSectionType } from "./models/TaskSectionType";
 import { lessonCollection } from "./collections/lessonCollection";
+import { taskCollection } from "./collections/taskCollection";
+import { sectionCollection } from "./collections/sectionCollection";
+import { contentBlockCollection } from "./collections/contentBlockCollection";
+import { TaskSection } from "./models/TaskSection";
+import { SectionContentBlock, SectionContentType } from "./models/ContentBlock";
 
 const PORT = 3000;
 
@@ -27,54 +31,47 @@ async function test(){
     course.name = 'Тестовый курс'
     course.description = 'Это тестовый курс, он не предназначен для изучения'
     course.type = CourseType.COURSE;
-    // await courseCollection.sync(course);
-    // console.log(`course id: ${course._id}`)
-
-    const COURSE_ID = '5f6f93de65b742b4712391a0'
+    await courseCollection.sync(course);
+    console.log(`course id: ${course._id}`)
 
     const courseChapter1 = new Chapter()
-    courseChapter1.courseId = COURSE_ID;
+    courseChapter1.courseId = course._id;
     courseChapter1.stepLabel = 'Шаг 1.'
     courseChapter1.title = 'Тестовая глава'
     courseChapter1.description = 'В этой главе вы узнаете много полезных фич языка'
     
-    // await chapterCollection.sync(courseChapter1);
-    // console.log(`chapter id: ${courseChapter1._id}`)
-    const CHAPTER_ID = '5f6f95211f1c07b7a471033c';
+    await chapterCollection.sync(courseChapter1);
+    console.log(`chapter id: ${courseChapter1._id}`)
 
-    // await chapterCollection.sync(courseChapter1)
-
-    // console.log(`Chapter id: ${courseChapter1._id}`)
-
-    
     const chapter1Lesson = new Lesson();
-    chapter1Lesson.chapterId = CHAPTER_ID;
+    chapter1Lesson.chapterId = courseChapter1._id;
     chapter1Lesson.title = 'Урок 1 Изучение основ JS'
-    // await lessonCollection.sync(chapter1Lesson);
-    // console.log(`Lesson id: ${chapter1Lesson._id}`)
+    await lessonCollection.sync(chapter1Lesson);
+    console.log(`Lesson id: ${chapter1Lesson._id}`)
     
     
-    const LESSON_ID = '5f6f96e4cb8acaba75ea61b0';
     
     const lessonTask = new LessonTask();
     lessonTask.lessonId = chapter1Lesson._id;
     lessonTask.title = 'Как обявить фукнцию'
     
-    const lessonTask2 = new LessonTask();
-    lessonTask.lessonId = chapter1Lesson._id;
-    lessonTask.title = 'Как объявить стрелочную фукнцию'
-
-    process.exit(0);
+    await taskCollection.sync(lessonTask)
+    
+    
     const task1Section1 = new TaskSection();
-    task1Section1.task_id = lessonTask._id;
+    task1Section1.taskId = lessonTask._id;
     task1Section1.taskName = 'Изучение'
     task1Section1.type = TaskSectionType.LECTURE;
-
+    
+    await sectionCollection.sync(task1Section1);
+    console.log(task1Section1._id)
+    
     const section1ContentBlock = new SectionContentBlock();
+    section1ContentBlock.sectionId = task1Section1._id;
     section1ContentBlock.content = 'И так мы начинаем наш здоровенный курс'
     section1ContentBlock.type = SectionContentType.TEXT;
-    task1Section1.lessonContent.push(section1ContentBlock)
-
+    await contentBlockCollection.sync(section1ContentBlock);
+    console.log(`id: ${section1ContentBlock._id}`)
 
 
 }
@@ -86,6 +83,9 @@ async function test(){
     await courseCollection.init();
     await chapterCollection.init()
     await lessonCollection.init();
+    await taskCollection.init();
+    await sectionCollection.init();
+    await contentBlockCollection.init();
 
     await test()
     const chapter = new Chapter();

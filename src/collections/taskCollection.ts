@@ -16,24 +16,24 @@ class TaskCollection {
         console.log('TASK COLLECTION CONNECTION ESTABLISHED')
     }
 
-    async sync(lesson: Lesson) {
-        console.log(`Syncing lesson task with id: ${lesson._id}`)//
+    async sync(task: LessonTask) {
+        console.log(`Syncing lesson task with id: ${task._id}`)
 
-        if (!(await chapterCollection.get(lesson.chapterId))) {
-            throw new Error(`No chapter with ${lesson.chapterId}`)
+        if (!(await chapterCollection.get(task.lessonId))) {
+            throw new Error(`No lesson with ${task.lessonId}`)
         }
 
         //@ts-ignore
-        if (!(await this.collection.findOne({_id: new ObjectId(lesson._id)}))) {
-            const result = await this.collection.insertOne(lesson)
-            console.log(`Lesson with id ${lesson._id} has been added`)
+        if (!(await this.collection.findOne({_id: new ObjectId(task._id)}))) {
+            const result = await this.collection.insertOne(task)
+            console.log(`Task with id ${task._id} has been added`)
         } else {
-            await this.collection.updateOne({_id: lesson._id}, { $set: lesson })
-            console.log(`Lesson with id ${lesson._id} has been updated`)
+            await this.collection.updateOne({_id: task._id}, { $set: task })
+            console.log(`Task with id ${task._id} has been updated`)
         }
     }
 
-    async get(id?: string): Promise<Chapter[]> {
+    async get(id?: string): Promise<LessonTask[]> {
         let result = undefined;
         //@ts-ignore
         result = this.collection.find(id ? {_id: new ObjectId(id)} : {})
@@ -45,4 +45,4 @@ class TaskCollection {
     }
 }
 
-export const lessonCollection = new LessonCollection();
+export const taskCollection = new TaskCollection();
