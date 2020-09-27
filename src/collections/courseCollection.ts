@@ -1,6 +1,7 @@
 import { Collection, Db, ObjectId } from "mongodb";
 import { Course } from "../models/Course";
 import { mongoConnection } from "../services/mongoConnection";
+import { chapterCollection } from "./chapterCollection";
 
 class CourseCollection {
 

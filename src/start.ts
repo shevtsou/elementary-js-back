@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import { courseCollection } from "./collections/courseCollection";
 import { mongoConnection } from "./services/mongoConnection";
 import  * as express from 'express'
