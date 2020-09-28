@@ -1,11 +1,11 @@
 import { ObjectId } from "mongodb";
-import { Model } from "../models/Model";
+import { BaseModel } from "./BaseModel";
 import { Chapter } from "./Chapter";
 import { CourseType } from "./CourseType";
 
 
 
-export class Course implements Model { 
+export class Course implements BaseModel { 
 
     _id: ObjectId = undefined;
     name: string;

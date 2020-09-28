@@ -1,9 +1,9 @@
 import { ObjectId } from "mongodb";
 
 export const convertToObjectId = (value: any): ObjectId => {
-    if (value instanceof ObjectId) {
-        return value;
-    } else {
+    if (typeof value === 'string') {
         return new ObjectId(value)
+    } else {
+        return value;
     }
 }
