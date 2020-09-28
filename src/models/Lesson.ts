@@ -1,9 +1,10 @@
+import { ObjectId } from "mongodb";
 import { Model } from "mongoose";
 
 export class Lesson { 
 
-    _id: string = undefined;
-    chapterId: string = undefined;
+    _id: ObjectId = undefined;
+    chapterId: ObjectId = undefined;
     title: string;
 
     constructor() {}

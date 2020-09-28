@@ -1,6 +1,8 @@
+import { ObjectId } from "mongodb";
+
 export class LessonTask { 
-    _id: string;
-    lessonId: string;
+    _id: ObjectId;
+    lessonId: ObjectId;
     title: string;
     
 }

@@ -37,7 +37,7 @@ class ChapterCollection {
         return await result.toArray();
     }
 
-    async get(id?: string): Promise<Chapter[]> {
+    async get(id?: string | ObjectId): Promise<Chapter[]> {
         let result = undefined;
         //@ts-ignore
         result = this.collection.find(id ? {_id: new ObjectId(id)} : {})

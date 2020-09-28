@@ -35,7 +35,7 @@ class ContentBlockCollection {
         }
     }
 
-    async get(id?: string): Promise<SectionContentBlock[]> {
+    async get(id?: string | ObjectId): Promise<SectionContentBlock[]> {
         let result = undefined;
         //@ts-ignore
         result = this.collection.find(id ? {_id: new ObjectId(id)} : {})

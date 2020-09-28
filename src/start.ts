@@ -26,7 +26,7 @@ import { SectionContentBlock, SectionContentType } from "./models/ContentBlock";
 const PORT = 3000;
 
 
-async function test(){
+async function generateTestCourseStructure(){
     const course = new Course();
     course.name = 'Тестовый курс'
     course.description = 'Это тестовый курс, он не предназначен для изучения'
@@ -90,7 +90,6 @@ async function testQuery() {
     await taskCollection.init();
     await sectionCollection.init();
     await contentBlockCollection.init();
-
     // await testQuery();
     // const chapter = new Chapter();
 

@@ -1,6 +1,8 @@
 import { Collection, Db, ObjectId } from "mongodb";
+import { convertToObject } from "typescript";
 import { Course } from "../models/Course";
 import { mongoConnection } from "../services/mongoConnection";
+import { convertToObjectId } from "../utils/gqlUtils";
 import { chapterCollection } from "./chapterCollection";
 
 class CourseCollection {
@@ -24,15 +26,15 @@ class CourseCollection {
         }
     }
 
-    async get(id?: string): Promise<Course[]> {
+    async get(id?: string | ObjectId): Promise<Course[]> {
         let result = undefined;
         //@ts-ignore
         result = this.collection.find(id ? {_id: new ObjectId(id)} : {})
         return await result.toArray()
     }
 
-    async delete(courseId: string) {
-        await this.collection.deleteOne({_id: courseId})
+    async delete(courseId: string | ObjectId) {
+        await this.collection.deleteOne({_id: convertToObjectId(courseId)})
     }
 }
 

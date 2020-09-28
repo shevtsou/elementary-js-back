@@ -1,3 +1,5 @@
+import { ObjectId } from "mongodb";
+
 export enum SectionContentType {
     CODE = 'CODE',
     TEXT = 'text'
@@ -6,7 +8,7 @@ export enum SectionContentType {
 
 
 export class SectionContentBlock {
-    _id: string;
+    _id: ObjectId;
     sectionId: string;
     type: SectionContentType;
     content: string;
