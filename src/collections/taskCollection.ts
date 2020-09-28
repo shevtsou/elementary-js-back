@@ -24,6 +24,10 @@ class TaskCollection extends BaseChildCollection<LessonTask> {
     getParentFieldName() {
         return 'lessonId'
     }
+    
+    getByLessonId(lessonId: string) {
+        return this.getByParentId(lessonId)
+    }
 
 }
 
