@@ -23,6 +23,10 @@ class ContentBlockCollection extends BaseChildCollection<SectionContentBlock> {
         return 'sectionId';
     }
 
+    getBySectionId(id: string | ObjectId) {
+        return this.getByParentId(id)
+    }
+
 }
 
 export const contentBlockCollection = new ContentBlockCollection();
