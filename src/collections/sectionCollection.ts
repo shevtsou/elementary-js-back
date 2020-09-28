@@ -25,6 +25,10 @@ class SectionCollection extends BaseChildCollection<TaskSection> {
     getParentFieldName() {
         return 'taskId'
     }
+
+    getByTaskId(taskId: string | ObjectId) {
+        return this.getByParentId(taskId);
+    }
 }
 
 export const sectionCollection = new SectionCollection();
