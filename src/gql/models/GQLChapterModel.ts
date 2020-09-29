@@ -19,6 +19,15 @@ class GQLChapterModel implements SModel {
                 description: String!
                 lessons: [Lesson]
             }
+
+            type FullChapter {
+                _id: ID!
+                courseId: ID!
+                title: String!
+                stepLabel: String!
+                description: String!
+                lessons: [FullLesson]
+            }
         `
     }
 }

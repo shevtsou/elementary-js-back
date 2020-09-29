@@ -11,6 +11,7 @@ export class Course implements BaseModel {
     name: string;
     description: string;
     type: CourseType;
+    chapters: Chapter[];
 
     constructor() {}
 

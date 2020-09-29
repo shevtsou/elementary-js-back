@@ -14,6 +14,14 @@ class GQLCourseModel implements SModel {
                 description: String
                 type: String
             }
+
+            type FullCourse {
+                _id: ID
+                name: String
+                description: String
+                type: String
+                chapters: [FullChapter]
+            }
         `
     }
 }

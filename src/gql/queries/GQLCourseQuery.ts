@@ -9,7 +9,7 @@ class GQLCourseQuery implements SQuery {
         return `
 
     courses: [Course] 
-
+    fullCourses: [FullCourse]
         `
     }
 
@@ -17,6 +17,9 @@ class GQLCourseQuery implements SQuery {
         return {
             courses: async () => {
                 return await courseCollection.get()
+            },
+            fullCourses: async () => {
+                return await courseCollection.getFullCourses();
             }
         }
     }

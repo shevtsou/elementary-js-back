@@ -25,7 +25,7 @@ export class ChapterCollection extends BaseHierarchyCollection<Chapter> {
         return courseCollection;
     }
 
-    async getByCourseId(id: string): Promise<Chapter[]> {
+    async getByCourseId(id: string | ObjectId): Promise<Chapter[]> {
         return await this.getByParentId(id);
     }
 
