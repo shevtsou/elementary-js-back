@@ -5,11 +5,13 @@ import { Lesson } from "../models/Lesson";
 import { LessonTask } from "../models/LessonTask";
 import { mongoConnection } from "../services/mongoConnection";
 import { BaseChildCollection } from "./BaseChildCollection";
+import { BaseHierarchyCollection } from "./BaseHierarchyCollection";
 import { chapterCollection } from "./chapterCollection";
 import { courseCollection } from "./courseCollection";
 import { lessonCollection } from "./lessonCollection";
+import { sectionCollection } from "./sectionCollection";
 
-class TaskCollection extends BaseChildCollection<LessonTask> {
+class TaskCollection extends BaseHierarchyCollection<LessonTask> {
     
 
 
@@ -27,6 +29,14 @@ class TaskCollection extends BaseChildCollection<LessonTask> {
     
     getByLessonId(lessonId: string) {
         return this.getByParentId(lessonId)
+    }
+
+    getChildFieldName() {
+        return 'sections'
+    }
+
+    getChildCollection() {
+        return sectionCollection;
     }
 
 }

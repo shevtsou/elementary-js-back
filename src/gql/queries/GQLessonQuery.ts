@@ -11,7 +11,7 @@ class GQLLessonQuery implements SQuery {
         return `
 
     lessons(chapterId: ID!): [Lesson] 
-
+    fullLesson(id: ID!): FullLesson
         `
     }
 
@@ -19,6 +19,9 @@ class GQLLessonQuery implements SQuery {
         return {
             lessons: async ({chapterId}) => {
                 return await lessonCollection.getByChapterId(chapterId)
+            },
+            fullLesson: async ({ id }) => {
+                return await lessonCollection.getFullModel(id);
             }
         }
     }

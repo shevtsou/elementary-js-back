@@ -8,6 +8,13 @@ class GQLTaskModel implements SModel {
                 lessonId: ID!
                 title: String!
             }
+
+            type FullTask {
+                _id: ID!
+                lessonId: ID!
+                title: String!
+                sections: [FullSection]!
+            }
         `
     }
 }

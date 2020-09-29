@@ -8,6 +8,13 @@ class GQLLessonModel implements SModel {
                 chapterId: ID!
                 title: String!
             }
+
+            type FullLesson {
+                _id: ID!
+                chapterId: ID!
+                title: String!
+                tasks: [FullTask]!
+            }
         `
     }
 }

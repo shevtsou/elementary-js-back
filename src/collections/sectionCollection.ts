@@ -6,10 +6,12 @@ import { LessonTask } from "../models/LessonTask";
 import { TaskSection } from "../models/TaskSection";
 import { mongoConnection } from "../services/mongoConnection";
 import { BaseChildCollection } from "./BaseChildCollection";
+import { BaseHierarchyCollection } from "./BaseHierarchyCollection";
 import { chapterCollection } from "./chapterCollection";
+import { contentBlockCollection } from "./contentBlockCollection";
 import { courseCollection } from "./courseCollection";
 
-class SectionCollection extends BaseChildCollection<TaskSection> {
+class SectionCollection extends BaseHierarchyCollection<TaskSection> {
 
     collection: Collection<TaskSection>;
 
@@ -29,6 +31,15 @@ class SectionCollection extends BaseChildCollection<TaskSection> {
     getByTaskId(taskId: string | ObjectId) {
         return this.getByParentId(taskId);
     }
+
+    getChildFieldName() {
+        return 'contentBlocks'
+    }
+
+    getChildCollection() {
+        return contentBlockCollection;
+    }
+
 }
 
 export const sectionCollection = new SectionCollection();

@@ -4,9 +4,11 @@ import { Course } from "../models/Course";
 import { mongoConnection } from "../services/mongoConnection";
 import { convertToObjectId } from "../utils/gqlUtils";
 import { BaseChildCollection } from "./BaseChildCollection";
+import { BaseHierarchyCollection } from "./BaseHierarchyCollection";
 import { courseCollection, CourseCollection } from "./courseCollection";
+import { lessonCollection } from "./lessonCollection";
 
-export class ChapterCollection extends BaseChildCollection<Chapter> {
+export class ChapterCollection extends BaseHierarchyCollection<Chapter> {
 
     collection: Collection<Chapter>;
 
@@ -25,6 +27,14 @@ export class ChapterCollection extends BaseChildCollection<Chapter> {
 
     async getByCourseId(id: string): Promise<Chapter[]> {
         return await this.getByParentId(id);
+    }
+
+    getChildFieldName() {
+        return 'lessons';
+    }
+
+    getChildCollection() {
+        return lessonCollection;
     }
 }
 
